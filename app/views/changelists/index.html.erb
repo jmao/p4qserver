@@ -1,0 +1,23 @@
+<h1>Listing changelists</h1>
+
+<table>
+  <tr>
+    <th>P4number</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @changelists.each do |changelist| %>
+  <tr>
+    <td><%= changelist.p4number %></td>
+    <td><%= link_to 'Show', changelist %></td>
+    <td><%= link_to 'Edit', edit_changelist_path(changelist) %></td>
+    <td><%= link_to 'Destroy', changelist, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Changelist', new_changelist_path %>

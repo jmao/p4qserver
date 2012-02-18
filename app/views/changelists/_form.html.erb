@@ -1,0 +1,21 @@
+<%= form_for(@changelist) do |f| %>
+  <% if @changelist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@changelist.errors.count, "error") %> prohibited this changelist from being saved:</h2>
+
+      <ul>
+      <% @changelist.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :p4number %><br />
+    <%= f.text_field :p4number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
