@@ -14,5 +14,6 @@
 /log/*.log
 /tmp
 
-/.idea
 output
+*/.idea/*
+.idea/

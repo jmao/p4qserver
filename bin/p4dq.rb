@@ -1,11 +1,10 @@
-exit 0
-
 def debug(content)
-  puts content
+  puts "[#{Time.now}]: #{content}"
 end
 
 def unshelve_change(unshelved_change_num)
-  `p4 unshelve -s "#{unshelved_change_num}"`
+  debug `p4 unshelve -s "#{unshelved_change_num}"`
+  $?.to_i
 end
 
 def dump_changes_to_files(default_output_fn, unshelved_output_fn, unshelved_change_num)
@@ -52,7 +51,9 @@ def rewrite_pending_change(default_output_fn, desc_content, new_output_fn)
 end
 
 def submit_change(change_spec_file)
-  `p4 submit -i < "#{change_spec_file}"`
+  debug "Submit Change"
+  debug `p4 submit -i < "#{change_spec_file}"`
+  $?.to_i
 end
 
 if ARGV.nil? || ARGV.length != 1
@@ -66,10 +67,15 @@ new_output_file = "output/p4_change_output_new"
 unshelved_file = "output/p4_change_output_unshelved"
 unshelved_num = ARGV[0]
 
-unshelve_change(unshelved_num)
+unshelve_result = unshelve_change(unshelved_num)
+if unshelve_result != 0
+  debug "Unshevle failed. Abort!"
+  exit unshelve_result
+end
+
 dump_changes_to_files(output_file, unshelved_file, unshelved_num)
 description = read_desc unshelved_file
-debug description
+debug "Original description: #{description}"
 rewrite_pending_change(output_file, description, new_output_file)
-submit_change(new_output_file)
+exit submit_change(new_output_file)
 
