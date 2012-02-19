@@ -16,15 +16,18 @@ class P4qRequestProcessor
       check_result = check_result_trunk | check_result_release
     end
 
+    Rails.logger.info "Branches locking check: #{check_result}"
+    Rails.logger.info check_output
+
     if check_result == 0
       submit_output = `ruby bin/p4dq.rb "#{change_id}"`
       submit_result = $?.to_i
+      Rails.logger.info "Submit result: #{submit_result}"
+      Rails.logger.info submit_output
       if submit_result == 0
         changelist = Changelist.where(:p4number => change_id).first
         changelist.update_attributes(:status => 'processed')
       end
-    else
-      Rails.logger.info check_output
     end
   end
 end

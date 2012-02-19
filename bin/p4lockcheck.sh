@@ -2,8 +2,8 @@
 
 TRUNKREMOTE=//depot/perforce/groups/stoptrunk
 RELEASEREMOTE=//depot/perforce/groups/stoprelease
-TRUNKLOCAL=/home/jmao/depot/perforce/groups/stoptrunk
-RELEASELOCAL=/home/jmao/depot/perforce/groups/stoprelease
+TRUNKLOCAL=/home/jmao/p4qdepot/depot/perforce/groups/stoptrunk
+RELEASELOCAL=/home/jmao/p4qdepot/depot/perforce/groups/stoprelease
 
 if [ $# -ne 1 ]
 then
