@@ -5,6 +5,14 @@
   <%= @changelist.p4number %>
 </p>
 
+<p>
+  <b>Status:</b>
+  <%= @changelist.status %>
+</p>
 
+<p>
+  <b>Branches (1:trunk, 2:release, 3: both):</b>
+  <%= @changelist.branches %>
+</p>
 <%= link_to 'Edit', edit_changelist_path(@changelist) %> |
 <%= link_to 'Back', changelists_path %>

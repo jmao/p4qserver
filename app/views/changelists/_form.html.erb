@@ -14,8 +14,10 @@
   <div class="field">
     <%= f.label :p4number %><br />
     <%= f.text_field :p4number %><br />
-    <%= f.label :branches %><br />
-    <%= f.text_field :branches %>
+    <%= f.label :branches %>(1: trunk, 2: releaes, 3: both)<br />
+    <%= f.text_field :branches %><br />
+    <%= f.label :status %> (new/processed)<br />
+    <%= f.text_field :status %>
   </div>
   <div class="actions">
     <%= f.submit %>
