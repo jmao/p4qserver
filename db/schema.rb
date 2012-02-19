@@ -11,12 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111208034603) do
+ActiveRecord::Schema.define(:version => 20120218233858) do
 
   create_table "changelists", :force => true do |t|
     t.string   "p4number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status",     :default => "new"
+    t.integer  "branches"
   end
 
 end
